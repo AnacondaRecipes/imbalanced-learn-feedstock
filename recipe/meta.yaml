@@ -35,9 +35,14 @@ test:
   requires:
     - pytest >=3.3.0
     - pytest-timeout
+    # pytest raises an exception during warning capture becauase it cannot import statsmodels
+    # i think pytest can't find the correct env or something
+    - statsmodels
   imports:
     - imblearn
   commands:
+    - which pytest
+    - type pytest
     - pytest --timeout 300 --verbose --pyargs imblearn
 
 about:
