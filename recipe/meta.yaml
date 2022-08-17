@@ -1,7 +1,6 @@
 {% set name = "imbalanced-learn" %}
-{% set version = "0.7.0" %}
-{% set sha256 = "da59de0d1c0fa66f62054dd9a0a295a182563aa1abbb3bf9224a3678fcfe8fa4" %}
-
+{% set version = "0.9.1" %}
+{% set sha256 = "4e14f7ae6078b5ab843b73c379b2ac50b207446415d9c2438c885d6cb5afd962" %}
 
 package:
   name: {{ name|lower }}
@@ -27,23 +26,22 @@ requirements:
     - pip
   run:
     - python >=3
-    - numpy >=1.14.6
-    - scipy >=1.1.0
+    # scipy needs a hotfix for upper-bound on numpy 
+    # remove the 1.23.0 upperbound when fixed
+    - numpy >=1.14.6,<1.23.0
+    - scipy >=1.3.2
     - scikit-learn >=1.0.1
     - joblib >=0.11
 
+
 test:
   requires:
-    - pytest >=3.3.0
+    - pytest >=5.0.1
     - pytest-timeout
-    # pytest raises an exception during warning capture becauase it cannot import statsmodels
-    # i think pytest can't find the correct env or something
     - statsmodels
   imports:
     - imblearn
   commands:
-    - which pytest
-    - type pytest
     - pytest --timeout 300 --verbose --pyargs imblearn
 
 about:
@@ -63,3 +61,8 @@ about:
 extra:
   recipe-maintainers:
     - glemaitre
+  anaconda-services:
+    comment: "Built as dependency for customer: see https://anaconda.zendesk.com/agent/tickets/26940"
+    recipe_maintainers:
+      - bkreider
+
