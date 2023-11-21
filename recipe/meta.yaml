@@ -45,11 +45,12 @@ test:
     - black >=23.3.0
     - flake8 >=3.8.2
     - mypy >=1.3.0
+    - pytest-xdist
   imports:
     - imblearn
   commands:
     - pip check
-    - pytest --timeout 300 --verbose --pyargs imblearn
+    - pytest -n auto --timeout 300 --verbose --pyargs imblearn
 
 about:
   home: https://github.com/scikit-learn-contrib/imbalanced-learn
