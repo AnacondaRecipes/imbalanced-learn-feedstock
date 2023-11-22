@@ -1,19 +1,18 @@
 {% set name = "imbalanced-learn" %}
-{% set version = "0.10.1" %}
-{% set sha256 = "bc7609619ec3c38c442292928239ad3d10b5deb0af8a29c83822b7b57b319f8b" %}
+{% set version = "0.11.0" %}
+{% set sha256 = "7582ae8858e6db0b92fef97dd08660a18297ee128d78c2abdc006b8bd86b8fdc" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
   number: 1
-  script: {{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation . -vv
   skip: True  # [py<38]
 
 requirements:
@@ -25,7 +24,7 @@ requirements:
   run:
     - python
     - numpy >=1.17.3
-    - scipy >=1.3.2
+    - scipy >=1.5.0
     - scikit-learn >=1.0.2
     - joblib >=1.1.1
   run_constrained:
@@ -33,17 +32,21 @@ requirements:
     # intel-openmp 2023.1 and llvm-openmp 14.0.6 appear not be compatible
     # leading to segfault in test_pairwise_distances_reduction.py::test_sqeuclidean_row_norms[42-float64-8-5-100]
     - intel-openmp <2023.1.0  # [osx and x86_64]
+    - pandas >=1.0.5
+    - tensorflow >=2.4.3
+    - keras >=2.4.3
 
 test:
   requires:
     - pip
     - pytest >=5.0.1
     - pytest-timeout
+    - pytest-xdist
   imports:
     - imblearn
   commands:
     - pip check
-    - pytest --timeout 300 --verbose --pyargs imblearn
+    - pytest -n auto --timeout 300 --verbose --pyargs imblearn
 
 about:
   home: https://github.com/scikit-learn-contrib/imbalanced-learn
