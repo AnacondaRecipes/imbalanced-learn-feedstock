@@ -39,11 +39,7 @@ test:
   requires:
     - pip
     - pytest >=5.0.1
-    - pytest-cov
     - pytest-timeout
-    - flake8
-    - black
-    - mypy
   imports:
     - imblearn
   commands:
