@@ -1,6 +1,5 @@
 {% set name = "imbalanced-learn" %}
-{% set version = "0.11.0" %}
-{% set sha256 = "7582ae8858e6db0b92fef97dd08660a18297ee128d78c2abdc006b8bd86b8fdc" %}
+{% set version = "0.12.3" %}
 
 package:
   name: {{ name|lower }}
@@ -8,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  sha256: 5b00796a01419e9102bd425e27c319d58d1f6cf2dfa751e02ed7f4edf67c3c1b
 
 build:
   number: 1
@@ -27,8 +26,8 @@ requirements:
     - scipy >=1.5.0
     - scikit-learn >=1.0.2
     - joblib >=1.1.1
-  run_constrained:
     - threadpoolctl >=2.0.0
+  run_constrained:
     # intel-openmp 2023.1 and llvm-openmp 14.0.6 appear not be compatible
     # leading to segfault in test_pairwise_distances_reduction.py::test_sqeuclidean_row_norms[42-float64-8-5-100]
     - intel-openmp <2023.1.0  # [osx and x86_64]
@@ -41,12 +40,11 @@ test:
     - pip
     - pytest >=5.0.1
     - pytest-timeout
-    - pytest-xdist
   imports:
     - imblearn
   commands:
     - pip check
-    - pytest -n auto --timeout 300 --verbose --pyargs imblearn
+    - pytest --pyargs imblearn -vv --timeout 300
 
 about:
   home: https://github.com/scikit-learn-contrib/imbalanced-learn
