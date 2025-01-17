@@ -28,12 +28,12 @@ requirements:
     - joblib >=1.1.1,<2
     - threadpoolctl >=2.0.0,<4
   run_constrained:
-    # intel-openmp 2023.1 and llvm-openmp 14.0.6 appear not be compatible
-    # leading to segfault in test_pairwise_distances_reduction.py::test_sqeuclidean_row_norms[42-float64-8-5-100]
-    - intel-openmp <2023.1.0  # [osx and x86_64]
-    - pandas >=1.0.5
-    - tensorflow >=2.4.3
-    - keras >=2.4.3
+    # # intel-openmp 2023.1 and llvm-openmp 14.0.6 appear not be compatible
+    # # leading to segfault in test_pairwise_distances_reduction.py::test_sqeuclidean_row_norms[42-float64-8-5-100]
+    # - intel-openmp <2023.1.0  # [osx and x86_64]
+    - pandas >=1.5.3,<3
+    - tensorflow >=2.13.1,<3
+    - keras >=3.0.5,<4
 
 test:
   requires:
