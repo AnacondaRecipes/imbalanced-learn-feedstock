@@ -1,2 +1,2 @@
 channels:
- - https://staging.continuum.io/prefect/fs/sklearn-compat/pr1/9d1c802
+  - https://staging.continuum.io/prefect/fs/sklearn-compat-feedstock/pr1/9d1c802
