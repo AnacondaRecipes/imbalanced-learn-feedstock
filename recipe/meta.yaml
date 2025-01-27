@@ -20,6 +20,7 @@ requirements:
     - setuptools
     - pip
     - wheel
+    - setuptools_scm >=8
   run:
     - python
     - numpy >=1.24.3,<3
