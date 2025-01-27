@@ -1,2 +1,4 @@
+build_env_vars:
+  ANACONDA_ROCKET_ENABLE_PY313 : yes
 channels:
-  - https://staging.continuum.io/prefect/fs/sklearn-compat-feedstock/pr1/9d1c802
+  - https://staging.continuum.io/prefect/fs/sklearn-compat-feedstock/pr1/d4de2cf
