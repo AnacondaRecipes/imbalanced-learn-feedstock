@@ -26,7 +26,7 @@ requirements:
     - numpy >=1.25.2,<3
     - scipy >=1.11.4,<2
     - scikit-learn >=1.4.2,<2
-    - joblib >=1.1.1,<2
+    - joblib >=1.2.0,<2
     - threadpoolctl >=2.0.0,<4
   run_constrained:
     - pandas >=2.0.3,<3
