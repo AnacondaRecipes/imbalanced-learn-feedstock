@@ -1,18 +1,18 @@
 {% set name = "imbalanced-learn" %}
-{% set version = "0.14.0" %}
+{% set version = "0.14.1" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name}}/{{ name.replace("-", "_") }}-{{ version }}.tar.gz
-  sha256: 22b9ba6dbd681a9ec613cd6e08c21d39639fb5ccbf2a3c991f9c36415b70522c
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name}}/{{ name.replace("-", "_") }}-{{ version }}.tar.gz
+  sha256: 46eeb5773a96b6fa92426356da66f3e4390a7ed8e715a633c6fb68ee4a3ccdcb
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
-  skip: True  # [py<310]
+  skip: true  # [py<310]
 
 requirements:
   host:
@@ -21,6 +21,7 @@ requirements:
     - pip
     - toml
     - setuptools_scm >=8
+    - setuptools-scm >=8
   run:
     - python
     - numpy >=1.25.2,<3
@@ -28,6 +29,7 @@ requirements:
     - scikit-learn >=1.4.2,<2
     - joblib >=1.2.0,<2
     - threadpoolctl >=2.0.0,<4
+    - sklearn-compat >=0.1.5,<0.2
   run_constrained:
     - pandas >=2.0.3,<3
     - tensorflow >=2.16.1,<3
