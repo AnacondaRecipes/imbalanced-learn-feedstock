@@ -34,18 +34,19 @@ requirements:
     - tensorflow >=2.16.1,<3
     - keras >=3.3.3,<4
 
+# Skip testing for py314 - 'packaging' is avaiable for py314 from version 25.0
 test:
   requires:
     - pip
     - pytest >=7.2.2,<9
     - pytest-timeout
-    - packaging >=23.2,<25
+    - packaging >=23.2,<25 # [py<314]
     - pytest-xdist >=3.5.0,<4
   imports:
     - imblearn
   commands:
     - pip check
-    - pytest --pyargs imblearn.tests
+    - pytest --pyargs imblearn.tests # [py<314]
 
 about:
   home: https://imbalanced-learn.org
