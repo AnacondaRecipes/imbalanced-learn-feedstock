@@ -10,7 +10,7 @@ source:
   sha256: 46eeb5773a96b6fa92426356da66f3e4390a7ed8e715a633c6fb68ee4a3ccdcb
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   skip: true  # [py<310]
 
@@ -30,23 +30,22 @@ requirements:
     - joblib >=1.2.0,<2
     - threadpoolctl >=2.0.0,<4
   run_constrained:
-    - pandas >=2.0.3,<3
+    - pandas >=2.0.3,<4 # loosen upper bound
     - tensorflow >=2.16.1,<3
     - keras >=3.3.3,<4
 
-# Skip testing for py314 - 'packaging' is avaiable for py314 from version 25.0
 test:
   requires:
     - pip
     - pytest >=7.2.2,<9
     - pytest-timeout
-    - packaging >=23.2,<25 # [py<314]
     - pytest-xdist >=3.5.0,<4
+    - pandas
   imports:
     - imblearn
   commands:
     - pip check
-    - pytest --pyargs imblearn.tests # [py<314]
+    - pytest --pyargs imblearn.tests
 
 about:
   home: https://imbalanced-learn.org
