@@ -38,6 +38,7 @@ requirements:
 # scikit-learn <1.7 not available for py314 in the main channel
 {% set deselect_tests = " --deselect=test_common.py::test_estimators_compatibility_sklearn" %}  # [py==314]
 {% set deselect_tests = deselect_tests + " --deselect=test_common.py::test_pandas_column_name_consistency" %}  # [py==314]
+{% set deselect_tests = deselect_tests + " --deselect=test_common.py::test_estimators_imblearn" %}  # [py==314]
 
 test:
   requires:
