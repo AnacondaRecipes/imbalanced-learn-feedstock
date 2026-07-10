@@ -39,7 +39,7 @@ requirements:
 test:
   requires:
     - pip
-    - packaging >=23.2,<25
+    - packaging >=23.2
     - pytest >=7.2.2,<9
     - pytest-xdist >=3.5.0,<4
     - pandas
