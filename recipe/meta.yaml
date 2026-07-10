@@ -1,5 +1,5 @@
 {% set name = "imbalanced-learn" %}
-{% set version = "0.14.1" %}
+{% set version = "0.14.2" %}
 
 package:
   name: {{ name }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace("-", "_") }}-{{ version }}.tar.gz
-  sha256: 46eeb5773a96b6fa92426356da66f3e4390a7ed8e715a633c6fb68ee4a3ccdcb
+  sha256: f80ce7eafbcece8686e32571bd12978546c729c3f277215bead61a906ce9afe4
 
 build:
-  number: 2
+  number: 0
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   skip: true  # [py<310]
 
@@ -26,7 +26,7 @@ requirements:
     - numpy >=1.25.2,<3
     - scipy >=1.11.4,<2
     - scikit-learn >=1.4.2,<2
-    - sklearn-compat >=0.1.5,<0.2
+    - sklearn-compat >=0.1.6,<0.2
     - joblib >=1.2.0,<2
     - threadpoolctl >=2.0.0,<4
   run_constrained:
